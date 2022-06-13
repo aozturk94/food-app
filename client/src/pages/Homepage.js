@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Foods from "../components/Foods";
 import axios from "axios";
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import { getAllFoods } from "../actions/foodActions";
 
 function Homepage() {
@@ -16,27 +16,31 @@ function Homepage() {
   //     .catch((err) => console.log(err));
   // }, []);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const foodstate = useSelector((state) => state.getAllFoodsReducer)
+  const foodsstate = useSelector((state) => state.getAllFoodsReducer);
 
-  const {foods, error, loading} = foodstate
+  const { foods, error, loading } = foodsstate;
 
   useEffect(() => {
-    dispatch(getAllFoods())
-  }, [])
+    dispatch(getAllFoods());
+  }, []);
 
   console.log(foods);
 
   return (
     <div>
       <div className="row">
-        {loading ? (<h1>Loading...</h1>) : error ? (<h1>something went wrong</h1>) : (
-        foods.map((food) => (
-          <div className="col-md-4">
-            <Foods food={food} />
-          </div>
-        ))
+        {loading ? (
+          <h1>Loading..</h1>
+        ) : error ? (
+          <h1>something went wrong</h1>
+        ) : (
+          foods.map((food) => (
+            <div className="col-md-4">
+              <Foods food={food} />
+            </div>
+          ))
         )}
       </div>
     </div>

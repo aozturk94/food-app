@@ -2,9 +2,8 @@ const express = require("express"); // req kısaltması ile lorem ipsum dolor si
 const app = express();
 const db = require("./db");
 const cors = require("cors");
+const foodsRoute = require("./routes/foodsRoute");
 const FoodModel = require("./models/FoodModel");
-const foodsRoute = require("./routes/foodsRoute")
-
 
 app.use(cors());
 app.use(express.json());
@@ -19,7 +18,7 @@ app.use(express.json());
 //   });
 // });
 
-app.use('/api/foods', foodsRoute);
+app.use("/api/foods", foodsRoute);
 
 app.listen(1001, () => {
   console.log("server bir şekilde çalışıyor :))))");

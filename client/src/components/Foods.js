@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { addtocartaction } from "../actions/cardActions";
 
 function Foods({ food }) {
   const [show, setShow] = useState(false);
@@ -7,8 +9,12 @@ function Foods({ food }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const addtocart = () => {
+    dispatch(addtocartaction(food, quantity, varient));
+  };
   const [quantity, setQuantity] = useState(1);
   const [varient, setVarient] = useState("small");
+  const dispatch = useDispatch();
 
   return (
     <div className="bg-light mt-5 shadow-lg p-3">
@@ -48,7 +54,9 @@ function Foods({ food }) {
         <div className="m-1 w-100 mt-3">
           <h1>Fiyat: {food.prices[0][varient] * quantity} TL</h1>
           <div className="m-1 w-100 mt-3">
-            <button className="btn">Sepete Ekle</button>
+            <button className="btn" onClick={addtocart}>
+              Sepete Ekle
+            </button>
           </div>
         </div>
       </div>
